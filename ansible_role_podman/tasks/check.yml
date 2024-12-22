@@ -1,0 +1,15 @@
+---
+
+- name: Check if Podman is installed
+  ansible.builtin.command: which podman
+  register: podman_which
+  changed_when: false
+  failed_when: false
+
+- name: Set fact for Podman installation status
+  ansible.builtin.set_fact:
+    podman_installed: "{{ podman_which.rc == 0 }}"
+
+- name: Display Podman installation status
+  ansible.builtin.debug:
+    msg: "Podman is {{ 'installed' if podman_installed else 'not installed' }}"

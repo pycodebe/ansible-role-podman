@@ -1,0 +1,23 @@
+# cSpell:disable
+---
+dependency:
+  enabled: true
+  name: galaxy
+driver:
+  name: podman
+platforms:
+  - name: instance
+    image: python:3.12-slim-bookworm
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+scenario:
+  name: install
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - verify
+    - destroy

@@ -1,0 +1,9 @@
+exclude_paths:
+  - .cache/
+  - .github/
+  - .git/
+
+skip_list:
+  - package-latest
+
+use_default_rules: true

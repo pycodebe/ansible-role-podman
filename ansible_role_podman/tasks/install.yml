@@ -1,0 +1,11 @@
+---
+- name: Get OS version
+  debug:
+    msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+- name: Install Podman on Ubuntu
+  ansible.builtin.apt:
+    name: podman
+    state: present
+    update_cache: true
+  when: ansible_distribution is match("Debian*")
