@@ -2,6 +2,7 @@
 # Ansible Role: Podman Management
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 This Ansible role manages Podman installation, configuration, and lifecycle across different Linux distributions.
@@ -137,3 +138,12 @@ conda activate ansible-role-podman
 
 MOLECULE_CONTEXT=fedora molecule test -s install
 ```
+
+
+## Dependencies
+
+- None
+
+## License
+
+MIT

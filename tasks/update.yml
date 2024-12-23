@@ -3,4 +3,3 @@
   ansible.builtin.package:
     name: podman
     state: latest
-  when: podman_installed
