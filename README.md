@@ -5,67 +5,26 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
-This Ansible role manages Podman installation, configuration, and lifecycle across different Linux distributions.
+Ansible role for Podman installation, configuration, and lifecycle management across Linux distributions.
 
 ## Features
-- Install Podman
-- Uninstall Podman
-- Update Podman
-- Verify Podman installation
-- Cross-platform support
+  - Install, uninstall, update, and verify Podman
+  - Cross-platform support (Fedora 41, Debian 12.8)
 
 ## Requirements
 - Ansible 2.18+
 - Python 3.11
-- Supported Operating Systems:
-  - Fedora 41
-  - Debian 12.8
+
   
-## Installation
+## Quick Start
 
 ### Clone Repository
 
 ```
 git clone https://github.com/pycodebe/podman-ansible-role.git
-```
-
-## Conda Environment Management
-
-### Environment Configuration
-The project uses a Conda environment defined in `environment.yml`:
-
-#### Create Environment
-
-```
 conda env create -f environment.yml
-```
-
-#### Activate Environment
-
-```
 conda activate ansible-role-podman
 ```
-
-#### Verify Environment
-
-```
-# Check Python version
-python --version
-
-# Verify installed packages
-pip list | grep -E "molecule|ansible|podman"
-```
-
-## Usage
-
-### Recommended Workflow
-1. Clone the repository
-2. Create the Conda environment
-3. Activate the environment
-4. Run tests or execute Ansible playbooks
-
-###  Using the Playbook
-This project uses a .env file to manage environment variables. Here's an example of the .env file content:
 
 ```
 # .env
@@ -93,52 +52,41 @@ localhost ansible_connection=local
     - role: ansible_role_podman
 ```
 
-### Running the Playbook
+## Usage
 
-First, source the .env file:
+This role supports three main actions: **install**, **uninstall**, and **update**.
+
+1. **Install Podman**:
 
 ```
 source .env
-```
-
-Then, use one of the following commands to run the playbook for different actions:
-
-```
-# install
-
 $ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=install"
 ```
 
-```
-# uninstall
+2. **Uninstall Podman**:
 
+```
+source .env
 $ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=uninstall"
 ```
 
-```
-# update
+3. **Update Podman**:
 
+```
+source .env
 $ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=update"
 ```
 
-## Tests
+## Testing
 
-### Run Tests
-
-Ensure you're in the ansible-role-podman environment
-
-```
-conda activate ansible-role-podman
-```
 
 ### Run Molecule tests
 
 ```
-# Run molecule test for the install scenario and the distribution fedora
+molecule test -s install
 
-MOLECULE_CONTEXT=fedora molecule test -s install
+molecule test -s uninstall
 ```
-
 
 ## Dependencies
 
