@@ -5,18 +5,18 @@
 
 - name: Include install.yml
   ansible.builtin.include_tasks: install.yml
-  when: 
+  when:
     - podman_action == 'install'
     - not podman_installed
 
 - name: Include uninstall.yml
   ansible.builtin.include_tasks: uninstall.yml
-  when: 
+  when:
     - podman_action == 'uninstall'
     - podman_installed
 
 - name: Include update.yml
   ansible.builtin.include_tasks: update.yml
-  when: 
+  when:
     - podman_action == 'update'
     - podman_installed

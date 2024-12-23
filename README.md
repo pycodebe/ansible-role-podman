@@ -14,14 +14,12 @@ This Ansible role manages Podman installation, configuration, and lifecycle acro
 - Cross-platform support
 
 ## Requirements
-- Ansible 2.12+
-- Python 3.8+
+- Ansible 2.18+
+- Python 3.11
 - Supported Operating Systems:
-  - RedHat/CentOS 8+
-  - Fedora
-  - Ubuntu 20.04+
-  - Debian 11+
-
+  - Fedora 41
+  - Debian 12.8
+  
 ## Installation
 
 ### Clone Repository
@@ -135,5 +133,7 @@ conda activate ansible-role-podman
 ### Run Molecule tests
 
 ```
-molecule test
+# Run molecule test for the install scenario and the distribution fedora
+
+MOLECULE_CONTEXT=fedora molecule test -s install
 ```

@@ -6,11 +6,20 @@ dependency:
 driver:
   name: podman
 platforms:
-  - name: instance
-    image: python:3.12-slim-bookworm
-    pre_build_image: true
+  - name: debian
+    image: debian:bookworm-slim
+    dockerfile: Dockerfile.j2
+    pre_build_image: false
+  - name: fedora
+    image: fedora:latest
+    dockerfile: Dockerfile.j2
+    pre_build_image: false
 provisioner:
   name: ansible
+  inventory:
+    group_vars:
+      all:
+        python_version: "3.11"
 verifier:
   name: testinfra
 scenario:
