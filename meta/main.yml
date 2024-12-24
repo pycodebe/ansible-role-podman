@@ -11,13 +11,14 @@ galaxy_info:
   min_ansible_version: "2.10"
   role_name: podman
   namespace: pycodebe
+  github_branch: master
   platforms:
     - name: Debian
       versions:
-        - bookworm
+        - all
     - name: Fedora
       versions:
-        - "41"
+        - all
   galaxy_tags:
     - containers
     - podman
