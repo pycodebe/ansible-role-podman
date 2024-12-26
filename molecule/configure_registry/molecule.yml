@@ -1,0 +1,32 @@
+# cSpell:disable
+---
+dependency:
+  enabled: true
+  name: galaxy
+driver:
+  name: podman
+platforms:
+  - name: debian
+    image: debian:bookworm-slim
+    dockerfile: Dockerfile.j2
+    pre_build_image: false
+  - name: fedora
+    image: fedora:latest
+    dockerfile: Dockerfile.j2
+    pre_build_image: false
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      all:
+        python_version: "3.11"
+verifier:
+  name: testinfra
+scenario:
+  name: configure_registry
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - verify
+    - destroy

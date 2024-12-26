@@ -8,7 +8,7 @@
 Ansible role for Podman installation, configuration, and lifecycle management across Linux distributions.
 
 ## Features
-  - Install, uninstall, update, and verify Podman
+  - Install, uninstall, update, configure registry and verify Podman
   - Cross-platform support (Fedora 41, Debian 12.8)
 
 ## Requirements
@@ -77,6 +77,21 @@ source .env
 $ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=update"
 ```
 
+4. **Install Podman and configure registry**:
+
+```
+source .env
+$ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=install_and_configure_registry"
+```
+
+5. **Configure registry**:
+
+```
+source .env
+$ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=configure_registry"
+```
+
+
 ## Testing
 
 
@@ -86,6 +101,8 @@ $ANSIBLE_PLAYBOOK_BIN -i inventory.cfg playbook.yml -e "podman_action=update"
 molecule test -s install
 
 molecule test -s uninstall
+
+molecule test -s configure_registry
 ```
 
 ## Dependencies

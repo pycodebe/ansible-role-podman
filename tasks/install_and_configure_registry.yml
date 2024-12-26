@@ -1,0 +1,6 @@
+---
+- name: Include installation tasks
+  ansible.builtin.include_tasks: install.yml
+
+- name: Include registry configuration tasks
+  ansible.builtin.include_tasks: configure_registry.yml
