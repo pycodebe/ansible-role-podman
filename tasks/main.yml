@@ -9,6 +9,12 @@
     - podman_action == 'install'
     - not podman_installed
 
+- name: Include install.yml and configure registry.yml
+  ansible.builtin.include_tasks: install_and_configure_registry.yml
+  when:
+    - podman_action == 'install_and_configure_registry'
+    - not podman_installed
+
 - name: Include uninstall.yml
   ansible.builtin.include_tasks: uninstall.yml
   when:
@@ -19,4 +25,10 @@
   ansible.builtin.include_tasks: update.yml
   when:
     - podman_action == 'update'
+    - podman_installed
+
+- name: Include configure_registry.yml
+  ansible.builtin.include_tasks: configure_registry.yml
+  when:
+    - podman_action == 'configure_registry'
     - podman_installed

@@ -1,0 +1,13 @@
+# cSpell:disable
+FROM {{ item.image }}
+
+{% if item.name == "fedora" %}
+RUN dnf install -y python{{ python_version | default("3.11") }} python3-libdnf5 python3-libdnf5-cli  && \
+    dnf clean all
+{% elif item.name == "debian" %}
+RUN apt-get update && \
+    apt-get install -y python{{ python_version | default("3.11") }} && \
+    apt-get clean
+{% endif %}
+
+RUN if [ ! -e /usr/bin/python ]; then ln -s /usr/bin/python{{ python_version | default("3.11") }} /usr/bin/python; fi

@@ -1,0 +1,18 @@
+# cSpell:disable
+---
+- name: Ensure user-specific registries directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/containers"
+    state: directory
+    mode: "0755"
+
+- name: Add Docker Hub to user-specific Podman registries
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.config/containers/registries.conf"
+    line: "{{ item }}"
+    create: true
+    mode: "0644"
+  loop:
+    - 'unqualified-search-registries = ["docker.io"]'
+    - '[[registry]]'
+    - 'location = "docker.io"'
